@@ -26,6 +26,7 @@ rectangle {
     usecase "Вход в систему" as UC_LoginPassenger
     usecase "Просмотр доступных рейсов" as UC_ViewTripsPassenger
     usecase "Регистрация" as UC_RegPassenger2
+    usecase "Пополнение баланса" as UC_Balance
 }
 
 ' --- Кассир ---
@@ -38,8 +39,6 @@ UC_Menu --UC_RegPassenger
 UC_Menu --UC_SelectPassenger
 UC_SelectPassenger --UC_Ticket
 UC_SelectPassenger --UC_Refund
-UC_Ticket --UC_Search
-UC_Ticket --UC_Seat
 UC_Search--UC_Seat
 
 ' --- Пассажир ---
@@ -48,6 +47,7 @@ Passenger --UC_RegPassenger2
 UC_LoginPassenger --UC_ViewTripsPassenger
 UC_LoginPassenger--UC_Ticket
 UC_LoginPassenger--UC_Refund
+Passenger--UC_Balance
 
 ' --- Include ---
 UC_Ticket .> UC_Seat : <<include>>
