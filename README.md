@@ -41,6 +41,7 @@
 
 ## Структура проекта
 
+```text
 System/
 ├── docs/
 │   └── diagrams/
@@ -50,12 +51,18 @@ System/
 │       ├── UseCase.png
 │       └── UseCase.puml
 ├── src/
-│   ├── schema.py
+│   ├── system/
+│   │   ├── _init_.py
+│   ├── _init_.py
 │   └── main.py
 ├── tests/
+│   ├── _init_.py
+│   └── test_main.py
 ├── .gitignore
-└── README.md
-
+├── README.md
+├── requirements.txt
+└── schema.sql
+```
 
 ## Диаграммы
 
