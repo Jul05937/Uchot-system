@@ -2,24 +2,25 @@ from src.database import get_connection
 from src.system.models.user import User
 
 def _map(row) -> User:
-    # (passengerID, name, surname, patronymic, password_hash, roleID, balance)
+    # (passengerID, name, surname, patronymic, login, password_hash, roleID, balance)
     return User(
         passengerID=row[0],
         name=row[1],
         surname=row[2],
         patronymic=row[3],
-        password_hash=row[4],
-        roleID=row[5],
-        balance=row[6]
+        login=row[4],
+        password_hash=row[5],
+        roleID=row[6],
+        balance=row[7]
     )
 
-def create(name: str, surname: str, patronymic: str, password_hash: str, roleID: int):
+def create(name: str, surname: str, patronymic: str, login: str, password_hash: str, roleID: int, balance: float = 0):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
-        INSERT INTO User (name, surname, patronymic, password_hash, roleID)
-        VALUES (?, ?, ?, ?, ?)
-    """, (name, surname, patronymic, password_hash, roleID))
+        INSERT INTO User (name, surname, patronymic, login, password_hash, roleID, balance)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (name, surname, patronymic, login, password_hash, roleID, balance))
     conn.commit()
     conn.close()
 
@@ -27,7 +28,7 @@ def get_by_id(passengerID: int) -> User | None:
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
-        SELECT passengerID, name, surname, patronymic, password_hash, roleID, balance
+        SELECT passengerID, name, surname, patronymic, login, password_hash, roleID, balance
         FROM User
         WHERE passengerID = ?
     """, (passengerID,))
@@ -35,11 +36,24 @@ def get_by_id(passengerID: int) -> User | None:
     conn.close()
     return _map(row) if row else None
 
+def get_by_login(login: str) -> User | None:
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT passengerID, name, surname, patronymic, login, password_hash, roleID, balance
+        FROM User
+        WHERE login = ?
+    """, (login,))
+    row = cur.fetchone()
+    conn.close()
+    return _map(row) if row else None
+
+
 def get_all() -> list[User]:
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
-        SELECT passengerID, name, surname, patronymic, password_hash, roleID, balance
+        SELECT passengerID, name, surname, patronymic, login, password_hash, roleID, balance
         FROM User
     """)
     rows = cur.fetchall()

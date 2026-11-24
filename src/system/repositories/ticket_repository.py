@@ -45,7 +45,18 @@ def delete(ticket_id: int):
     cur.execute("DELETE FROM Ticket WHERE TicketID = ?", (ticket_id,))
     conn.commit()
     conn.close()
-#?
+
+def count_active_by_trip(trip_id: int) -> int:
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT COUNT(*) FROM Ticket
+        WHERE TripID = ? AND statusPayment = 1
+    """, (trip_id,))
+    row = cur.fetchone()
+    conn.close()
+    return row[0]
+
 def get_by_passenger(passenger_id: int) -> list[Ticket]:
     conn = get_connection()
     cur = conn.cursor()

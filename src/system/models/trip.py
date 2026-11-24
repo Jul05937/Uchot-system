@@ -7,5 +7,6 @@ class Trip:
     cost: float
     start_date: str
     end_date: str
+    seats: int
     isavaliable: bool
-    description: str | None
+    description: str | None = None

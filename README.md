@@ -37,7 +37,7 @@
 2. **Business Logic Layer** — проверка доступности мест, правила возврата, бронирование
 3. **Data Layer** — база данных: таблицы Пассажиров, Рейсов, Билетов
 
-**Средства реализации:** Python 3, Git, GitHub, PlantUML.
+**Средства реализации:** Python 3, Git, GitHub, PlantUML, SQLite
 
 ## Структура проекта
 
@@ -51,18 +51,31 @@ System/
 │       ├── UseCase.png
 │       └── UseCase.puml
 ├── src/
-│   ├── system/
-│   │   ├── _init_.py
-│   ├── _init_.py
-│   └── main.py
+│   ├── __init__.py
+│   └── database/
+|       ├── __init__.py
+|       ├── database.py
+|       └──schema.sql
+│   ├── auth.py
+│   ├── menu.py
+│   ├── main.py
+│   └── system/
+│       ├── __init__.py
+│       ├── models/  (__init__.py, user.py, trip.py, ticket.py, user_role.py)
+│       ├── repositories/  (__init__.py, user_repository.py, trip_repository.py, ticket_repository.py)
+│       └── services/  (__init__.py, auth_service.py, user_service.py, trip_service.py, ticket_service.py)
 ├── tests/
-│   ├── _init_.py
+│   ├── __init__.py
 │   └── test_main.py
 ├── .gitignore
 ├── README.md
-├── requirements.txt
-└── schema.sql
+└── requirements.txt
 ```
+
+## Запуск
+
+Из корня проекта:
+    python -m src.main
 
 ## Диаграммы
 

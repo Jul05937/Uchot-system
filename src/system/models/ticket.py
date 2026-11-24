@@ -7,6 +7,3 @@ class Ticket:
     passengerID: int
     statusPayment: bool
     start_date: str
-#?
-    passenger_name: str | None = None
-    trip_name: str | None = None
