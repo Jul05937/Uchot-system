@@ -1,4 +1,4 @@
-from src.database import init_db
+from src.system.database import init_db
 from src.auth import login, register
 from src.menu import passenger_menu, cashier_menu
 from src.system.services.auth_service import create_default_admin

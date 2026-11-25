@@ -3,7 +3,8 @@ import os
 from pathlib import Path
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
+SYSTEM_DIR = os.path.dirname(BASE_DIR)
+PROJECT_DIR = os.path.dirname(os.path.dirname(SYSTEM_DIR))
 DB_PATH = os.path.join(PROJECT_DIR, 'transport.db')
 SQL_PATH = os.path.join(BASE_DIR, 'schema.sql')
 

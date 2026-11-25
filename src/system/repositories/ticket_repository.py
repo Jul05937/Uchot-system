@@ -1,4 +1,4 @@
-from src.database import get_connection
+from src.system.database import get_connection
 from src.system.models.ticket import Ticket
 
 def _map(row) -> Ticket:

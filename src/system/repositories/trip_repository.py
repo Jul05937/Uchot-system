@@ -1,4 +1,4 @@
-from src.database import get_connection
+from src.system.database import get_connection
 from src.system.models.trip import Trip
 
 def _map(row) -> Trip:
