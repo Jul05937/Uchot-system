@@ -2,6 +2,7 @@ from src.system.database import init_db
 from src.auth import login, register
 from src.menu import passenger_menu, cashier_menu
 from src.system.services.auth_service import create_default_admin
+from src.export import export_data
 
 def main():
     try:
@@ -9,6 +10,7 @@ def main():
     except Exception as e:
         print(f"Ошибка инициализации БД: {e}")
         return
+    export_data()
     create_default_admin()
     
     print("Добро пожаловать в систему учёта пассажиров и поездок!")
